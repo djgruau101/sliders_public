@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        function generateSliders(val) {
+            document.getElementById("sliders").innerHTML = "";
+            val = parseInt(val);
+            for (i = 0; i < val; i++) {
+                var newSliderDiv = document.createElement("div");
+                newSliderDiv.setAttribute("class", "sliderDiv");
+                newSliderDiv.innerHTML = "<input class='slider' type='range' min='0' max='10'>";
+                document.getElementById("sliders").appendChild(newSliderDiv);
+            }
+        }
+
+        function getValue(slider) {
+            return slider.value;
+        }
+    
+        function getAverage() {
+            let sliders = document.getElementsByClassName("slider");
+            sigma = 0;
+            for (i=0;i<sliders.length;i++) {
+                sigma += parseInt(sliders[i].value);
+            }
+            document.getElementById("average").innerHTML = sigma/sliders.length;
+        }
+    </script>
+    <div>
+        <input type="number" oninput="generateSliders(this.value)" id="quantity" name="quantity" min="1" max="5">                          
+    </div>
+    <div id="sliders">
+        
+    </div>
+    <button onclick="getAverage()">Calculate Average!</button>
+    <p id="average"></p>
+
+</body>
+</html>
